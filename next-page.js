@@ -56,7 +56,7 @@
     NextPage.prototype.start = function() {
         //事件绑定
         var eventList = this.monitorEvent;
-        for (let i = 0; i < eventList.length; i++) {
+        for (var i = 0; i < eventList.length; i++) {
             window.addEventListener(eventList[i], this.eachDOM, false);
         }
         this.eachDOM();
@@ -66,7 +66,7 @@
      */
     NextPage.prototype.end = function() {
         var eventList = this.monitorEvent;
-        for (let i = 0; i < eventList.length; i++) {
+        for (var i = 0; i < eventList.length; i++) {
             window.removeEventListener(eventList[i], this.eachDOM, false);
         }
 
@@ -79,8 +79,8 @@
     NextPage.prototype.eachDOM = function() {
 
         if (this.testXhrStart()) return;
-        let length = this.el.length;
-        for (let i = 0; i < length; i++) {
+        var length = this.el.length;
+        for (var i = 0; i < length; i++) {
             if (this.testMeet(this.el[i]) === true) {
                 this.NextPageData(this.el[i]);
                 return;
@@ -95,7 +95,7 @@
     NextPage.prototype.NextPageData = function(el) {
         if (this.testXhrStart()) return;
         this.startCall(el);
-        let url = this.getUrl();
+        var url = this.getUrl();
         this.xhr = new XMLHttpRequest(); //创建http请求对象
         this.xhr.open('GET', url, true); //异步请求
         this.xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
@@ -108,7 +108,7 @@
      * http请求
      */
     NextPage.prototype.readystatechange = function() {
-        let xhr = this.xhr;
+        var xhr = this.xhr;
 
         if (xhr.readyState === 4) {
             var head = xhr.getAllResponseHeaders();
@@ -133,10 +133,10 @@
      * @returns {string} 返回拼接成的url地址
      */
     NextPage.prototype.getUrl = function() {
-        let data = this.data;
-        let aData = [];
-        let url = '';
-        for (let attr in data) {
+        var data = this.data;
+        var aData = [];
+        var url = '';
+        for (var attr in data) {
             aData.push(attr + '=' + data[attr]);
         }
         url = this.url + '?' + aData.join('&') + '&' + new Date().getTime();
@@ -147,13 +147,13 @@
      * @param {object} el 检测的元素
      */
     NextPage.prototype.testMeet = function(el) {
-        let bcr = el.getBoundingClientRect(); //取得元素在可视区的位置
-        let mw = el.offsetWidth; //元素自身宽度
-        let mh = el.offsetHeight; //元素自身的高度
-        let w = window.innerWidth; //视窗的宽度
-        let h = window.innerHeight; //视窗的高度
-        let boolX = (!((bcr.right - this.left) <= 0 && ((bcr.left + mw) - this.left) <= 0) && !((bcr.left + this.right) >= w && (bcr.right + this.right) >= (mw + w))); //上下符合条件
-        let boolY = (!((bcr.bottom - this.top) <= 0 && ((bcr.top + mh) - this.top) <= 0) && !((bcr.top + this.bottom) >= h && (bcr.bottom + this.bottom) >= (mh + h))); //上下符合条件
+        var bcr = el.getBoundingClientRect(); //取得元素在可视区的位置
+        var mw = el.offsetWidth; //元素自身宽度
+        var mh = el.offsetHeight; //元素自身的高度
+        var w = window.innerWidth; //视窗的宽度
+        var h = window.innerHeight; //视窗的高度
+        var boolX = (!((bcr.right - this.left) <= 0 && ((bcr.left + mw) - this.left) <= 0) && !((bcr.left + this.right) >= w && (bcr.right + this.right) >= (mw + w))); //上下符合条件
+        var boolY = (!((bcr.bottom - this.top) <= 0 && ((bcr.top + mh) - this.top) <= 0) && !((bcr.top + this.bottom) >= h && (bcr.bottom + this.bottom) >= (mh + h))); //上下符合条件
         if (el.width != 0 && el.height != 0 && boolX && boolY) {
             return true;
         } else {
