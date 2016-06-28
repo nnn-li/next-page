@@ -1,11 +1,11 @@
 {
-  "name": "next-page",
-  "version": "0.0.1",
-  "description": "next page",
-  "main": "next-page.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "Julian",
-  "license": "MIT"
+    "name": "next-page",
+    "version": "0.0.3",
+    "description": "next page",
+    "main": "next-page.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "Julian",
+    "license": "MIT"
 }
